@@ -1,0 +1,17 @@
+(executable
+ (name frozen)
+ (modules frozen)
+ (promote (until-clean))
+ (libraries scaml.scamlib typerep ptime)
+ (preprocess (pps ppx_inline_test scaml.inlined ppx_typerep_conv)))
+
+(executable
+ (name graveyard)
+ (modules graveyard)
+ (promote (until-clean))
+ (libraries scaml.scamlib typerep ptime)
+ (preprocess (pps ppx_inline_test scaml.inlined ppx_typerep_conv)))
+
+(env
+ (dev
+  (flags (:standard -warn-error -A -g))))

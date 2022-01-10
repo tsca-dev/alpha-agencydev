@@ -1,0 +1,25 @@
+(library
+ (name agency_persistency)
+ (modules base dynamo_backend sign)
+ (private_modules sign)
+ (libraries
+   indexerlib indexer_impls
+   agency_apis rich_utils
+   brokerlib ptime kxclib
+   httpaf httpaf-lwt-unix uri-sexp
+   digestif nocrypto calendar yojson
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-006-PsCARTHA
+   tezos-client-006-PsCARTHA-commands
+   tezos-006-PsCARTHA-test-helpers)
+ (preprocess (pps ppx_inline_test ppx_sexp_conv ppx_deriving_yojson kxclib.ppx))
+ (flags (:standard -open Kxclib -w -32)))
+
+(executable
+ (name demo)
+ (modules demo)
+ (promote (until-clean))
+ (libraries agency_persistency)
+ (preprocess (pps ppx_inline_test ppx_sexp_conv ppx_deriving_yojson kxclib.ppx))
+ (flags (:standard -open Kxclib -w -32)))

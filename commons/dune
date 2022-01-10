@@ -1,0 +1,28 @@
+(library
+ (name commons)
+ (wrapped false)
+ (modules commons)
+ (libraries
+   hex kxclib)
+ (preprocess (pps kxclib.ppx))
+ (flags (:standard -open Kxclib)))
+
+(library
+ (name rich_utils)
+ (wrapped false)
+ (modules reworked_injection tzutils bcutils tzcrypto tznode)
+ (libraries
+   commons
+   scaml.scamlib typerep ptime kxclib
+   digestif
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-006-PsCARTHA
+   tezos-client-006-PsCARTHA-commands
+   tezos-006-PsCARTHA-test-helpers
+
+   tezos-client-007-PsDELPH1
+   tezos-client-007-PsDELPH1-commands
+   tezos-007-PsDELPH1-test-helpers)
+ (preprocess (pps kxclib.ppx))
+ (flags (:standard -open Kxclib)))

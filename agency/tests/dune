@@ -1,0 +1,5 @@
+(tests
+ (names http_endpoints)
+ (libraries kxclib agency_apis alcotest)
+ (preprocess (pps kxclib.ppx))
+ (flags (:standard -open Kxclib)))

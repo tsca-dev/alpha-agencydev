@@ -1,0 +1,5 @@
+(tests
+ (names persistency_tests)
+ (libraries agency_persistency kxclib agency_apis alcotest)
+ (preprocess (pps kxclib.ppx))
+ (flags (:standard -open Kxclib)))

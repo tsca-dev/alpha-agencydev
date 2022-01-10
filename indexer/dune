@@ -1,0 +1,42 @@
+(executable
+ (name indexer)
+ (modules indexer)
+ (promote (until-clean))
+ (libraries
+   indexerlib indexer_impls
+   commons rich_utils brokerlib
+   ptime kxclib
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-006-PsCARTHA
+   tezos-client-006-PsCARTHA-commands
+   tezos-006-PsCARTHA-test-helpers)
+ (preprocess (pps kxclib.ppx ppx_sexp_conv))
+ (flags (:standard -open Kxclib)))
+
+(library
+ (name indexerlib)
+ (modules indexerlib)
+ (libraries
+   commons brokerlib sexplib kxclib)
+ (preprocess (pps kxclib.ppx ppx_sexp_conv))
+ (flags (:standard -open Kxclib)))
+
+(library
+ (name indexer_impls)
+ (modules indexer_v0)
+ (wrapped false)
+ (libraries
+   commons rich_utils brokerlib indexerlib
+   ptime kxclib
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-006-PsCARTHA
+   tezos-client-006-PsCARTHA-commands
+   tezos-006-PsCARTHA-test-helpers
+
+   tezos-client-007-PsDELPH1
+   tezos-client-007-PsDELPH1-commands
+   tezos-007-PsDELPH1-test-helpers)
+ (preprocess (pps kxclib.ppx ppx_sexp_conv))
+ (flags (:standard -open Kxclib)))

@@ -1,0 +1,51 @@
+{ LAMBDA
+    (pair (bytes %wparam) (bytes %wstorage))
+        (pair (list operation) (bytes))
+        { { DUP ; CDR @wstorage ; DIP 1 { CAR @wparam } } ;
+          UNPACK @storage (pair (set address) timestamp);
+          IF_NONE
+            { PUSH string "baka"; FAILWITH }
+            { SWAP ;
+              UNPACK @param (pair mutez address);
+              IF_NONE
+                { PUSH string "yaharibaka"; FAILWITH }
+                { PAIR;
+
+                  DUP ;
+                  AMOUNT ;
+                  PUSH mutez 0 ;
+                  COMPARE ;
+                  NEQ ;
+                  IF { FAILWITH } {} ;
+                  { DUP ; CAR ; DIP 1 { CDR } } ;
+                  DIP 1 { { DUP ; CAR ; DIP 1 { CDR } } } ;
+                  SWAP ;
+                  SOURCE ;
+                  MEM ;
+                  IF {} { FAILWITH } ;
+                  SWAP ;
+                  NOW ;
+                  COMPARE ;
+                  LT ;
+                  IF { FAILWITH } {} ;
+                  { DUP ; CAR ; DIP 1 { CDR } } ;
+                  DUP ;
+                  BALANCE ;
+                  COMPARE ;
+                  LT ;
+                  IF { FAILWITH } {} ;
+                  PUSH mutez 0 ;
+                  COMPARE ;
+                  EQ ;
+                  IF { FAILWITH } {} ;
+                  DROP 1 ;
+                  { DUP ; CAR ; DIP 1 { CDR } } ;
+                  { DUP ; CAR ; DIP 1 { CDR } } ;
+                  SWAP ;
+                  CONTRACT unit ;
+                  IF_NONE { FAILWITH } { SWAP ; PUSH unit Unit ; TRANSFER_TOKENS } ;
+                  DIP 1 { NIL operation } ;
+                  CONS ;
+
+                  SWAP ; PACK ; SWAP ;
+                  PAIR } } } }

@@ -1,0 +1,8 @@
+(executable
+ (name hash_utils)
+ (promote (until-clean))
+ (libraries
+   kxclib tezos-crypto)
+ (preprocess (pps kxclib.ppx))
+ (flags (:standard -open Kxclib
+          -warn-error -a)))

@@ -1,0 +1,25 @@
+{ parameter (bytes %wparam) ;
+  storage
+    (pair :wrapper_store
+       (bytes %wstore)
+       (pair (lambda :wfunc %program
+                (pair (bytes %wparam) (bytes %wstore))
+                (pair (list %operations operation) (bytes %new_wstore)))
+             (option :avatar_identity
+                (pair (address %broker)
+                      (pair (string %sprthash)
+                            (string %rclabel)))))) ;
+  code { DUP ;
+         CDR ;
+         CDR ;
+         CAR ;
+         { DIP 1 { DUP } ; SWAP } ;
+         CDAR ;
+         { DIG 2 ; DUP ; DIP 1 { DUG 2 } } ;
+         CAR ;
+         PAIR ;
+         EXEC ;
+         DUP ;
+         CAR ;
+         DIP 1 { CDR ; DIP 1 { CDDR } ; PAIR } ;
+         PAIR } }
