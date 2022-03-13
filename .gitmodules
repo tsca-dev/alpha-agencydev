@@ -1,0 +1,12 @@
+[submodule "proto_pinned/vendors/spotlib"]
+	path = proto_pinned/vendors/spotlib
+	url = https://gitlab.com/camlspotter/spotlib
+[submodule "proto_pinned/vendors/ppx_meta_conv"]
+	path = proto_pinned/vendors/ppx_meta_conv
+	url = https://gitlab.com/camlspotter/ppx_meta_conv
+[submodule "proto_pinned/vendors/scaml"]
+	path = proto_pinned/vendors/scaml
+	url = https://gitlab.com/haochenxie/scaml.git
+[submodule "proto_pinned/vendors/kxclib"]
+	path = proto_pinned/vendors/kxclib
+	url = https://github.com/kxcteam/kxclib-ocaml.git
