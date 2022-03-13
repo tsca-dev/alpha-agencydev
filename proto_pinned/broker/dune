@@ -1,0 +1,61 @@
+(executable
+ (name broker)
+ (modules broker)
+ (promote (until-clean))
+ (libraries
+   brokerlib ptime kxclib digestif
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-006-PsCARTHA
+   tezos-client-006-PsCARTHA-commands
+   tezos-006-PsCARTHA-test-helpers)
+ (preprocess (pps ppx_inline_test scaml.inlined ppx_typerep_conv))
+ (flags (:standard -open Kxclib)))
+
+(executable
+ (name bridge)
+ (modules bridge)
+ (promote (until-clean))
+ (libraries
+   broker_bridge_impl
+   bridgelib
+   brokerlib ptime kxclib digestif
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-006-PsCARTHA
+   tezos-client-006-PsCARTHA-commands
+   tezos-006-PsCARTHA-test-helpers)
+ (preprocess (pps ppx_inline_test scaml.inlined ppx_typerep_conv))
+ (flags (:standard -open Kxclib)))
+
+(library
+ (name broker_bridge_impl)
+ (wrapped false)
+ (modules bridge_impl)
+ (libraries brokerlib broker_models kxclib)
+ (flags (:standard -open Kxclib)))
+
+(library
+ (name brokerlib)
+ (modules brokerlib tzutils commons tzcrypto)
+ (libraries
+   broker_models bridgelib
+   scaml.scamlib typerep ptime kxclib digestif
+   tezos-crypto tezos-base
+   tezos-client-007-PsDELPH1
+   tezos-007-PsDELPH1-test-helpers
+ )
+ (preprocess (pps ppx_inline_test scaml.inlined ppx_typerep_conv))
+ (preprocessor_deps (file ../wrapper.tz))
+ (flags (:standard -open Kxclib)))
+
+(toplevel
+ (name tt)
+ (libraries
+   scaml.scamlib typerep ptime kxclib
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-006-PsCARTHA
+   tezos-client-006-PsCARTHA-commands
+   tezos-006-PsCARTHA-test-helpers)
+ (preprocess (pps ppx_inline_test scaml.inlined ppx_typerep_conv)))

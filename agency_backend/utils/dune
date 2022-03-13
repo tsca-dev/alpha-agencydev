@@ -1,0 +1,5 @@
+(library
+ (name backend_utils)
+ (libraries kxclib hex uri sexplib yojson str)
+ (preprocess (pps ppx_sexp_conv ppx_deriving_yojson))
+ (flags (:standard -open Kxclib)))

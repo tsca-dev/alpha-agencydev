@@ -1,0 +1,11 @@
+(library
+ (name available_books)
+ (libraries
+   booksdk agency_models
+   ptime kxclib
+   uri-sexp
+   digestif)
+ (preprocess (pps ppx_inline_test ppx_sexp_conv ppx_deriving_yojson))
+ (flags (:standard
+          -open Kxclib
+          -open Agency_models)))

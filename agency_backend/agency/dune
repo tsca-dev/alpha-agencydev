@@ -1,0 +1,30 @@
+(executable
+ (name agency_server)
+ (promote (until-clean))
+ (libraries
+   agency_models broker_models backend_utils
+   available_books
+   indexerlib
+   indexer_impls
+   rich_utils
+   ; brokerlib
+   ptime kxclib
+   httpaf httpaf-lwt-unix uri-sexp
+   digestif nocrypto
+ )
+ (preprocess (pps ppx_inline_test ppx_sexp_conv ppx_deriving_yojson
+ ))
+ (flags (:standard
+          -open Kxclib
+          -open Agency_models
+          -open Backend_utils)))
+
+(rule
+ (targets aii-jslib.js)
+ (mode (promote (until-clean)))
+ (action (copy %{dep:../jslibs/aii-jslib.js} %{targets})))
+
+(rule
+ (targets bil-jslib.js)
+ (mode (promote (until-clean)))
+ (action (copy %{dep:../jslibs/bil-jslib.js} %{targets})))

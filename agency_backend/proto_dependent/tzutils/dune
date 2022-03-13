@@ -1,0 +1,24 @@
+(library
+ (name commons)
+ (wrapped false)
+ (modules commons)
+ (libraries
+   hex kxclib)
+ (flags (:standard -open Kxclib)))
+
+(library
+ (name rich_utils)
+ (wrapped false)
+ (modules new_injection tzutils bcutils tzcrypto tznode)
+ (libraries
+   commons
+   typerep ptime kxclib
+   digestif
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-011-PtHangz2
+   tezos-client-011-PtHangz2-commands
+   tezos-protocol-011-PtHangz2
+   tezos-011-PtHangz2-test-helpers
+)
+ (flags (:standard -open Kxclib)))

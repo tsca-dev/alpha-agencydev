@@ -1,0 +1,20 @@
+(lang dune 2.9)
+(name tsca-agency-backend)
+
+(source (github kxcteam/tsca-agency))
+(license MIT)
+(authors "Haochen Xie")
+(maintainers "Haochen Xie <hx@kxc.io>")
+
+(generate_opam_files true)
+(package
+ (name tsca-agency-backend)
+ (synopsis "TSCA Agency Backend Package")
+ (version 0.2)
+ (depends
+  (dune (>= 2.0))
+  (lwt (>= 4.0))
+  (tls (>= 0.11.1))
+  (js_of_ocaml (= 4.0.0))
+  (tezos-protocol-011-PtHangz2 (= 11.1))
+  (faraday-lwt-unix (>= 0.7))))

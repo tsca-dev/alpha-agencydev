@@ -1,0 +1,41 @@
+(executable
+ (name indexer)
+ (modules indexer)
+ (promote (until-clean))
+ (libraries
+   indexerlib indexer_impls
+   commons rich_utils ; brokerlib
+   ptime kxclib
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-011-PtHangz2
+   tezos-client-011-PtHangz2-commands
+   tezos-011-PtHangz2-test-helpers)
+ (preprocess (pps ppx_sexp_conv))
+ (flags (:standard -open Kxclib)))
+
+(library
+ (name indexerlib)
+ (modules indexerlib)
+ (libraries
+   rich_utils
+   commons bridgelib broker_models
+   sexplib kxclib)
+ (preprocess (pps ppx_sexp_conv))
+ (flags (:standard -open Kxclib)))
+
+(library
+ (name indexer_impls)
+ (modules indexer_v0)
+ (wrapped false)
+ (libraries
+   commons rich_utils ; brokerlib
+   indexerlib
+   ptime kxclib
+   tezos-crypto
+   tezos-client-base-unix
+   tezos-client-011-PtHangz2
+   tezos-client-011-PtHangz2-commands
+   tezos-011-PtHangz2-test-helpers)
+ (preprocess (pps ppx_sexp_conv))
+ (flags (:standard -open Kxclib)))

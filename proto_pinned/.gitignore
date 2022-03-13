@@ -1,0 +1,10 @@
+*~
+*.exe
+*.cm*
+.merlin
+*.install
+_build
+_opam
+\#*\#
+.\#*
+docker/Dockerfile

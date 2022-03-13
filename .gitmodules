@@ -7,6 +7,9 @@
 [submodule "proto_pinned/vendors/scaml"]
 	path = proto_pinned/vendors/scaml
 	url = https://gitlab.com/haochenxie/scaml.git
-[submodule "proto_pinned/vendors/kxclib"]
-	path = proto_pinned/vendors/kxclib
+[submodule "agency_backend/vendors/httpaf"]
+	path = agency_backend/vendors/httpaf
+	url = https://github.com/kxcteam/httpaf.git
+[submodule "shared_vendors/vendors/kxclib"]
+	path = shared_vendors/vendors/kxclib
 	url = https://github.com/kxcteam/kxclib-ocaml.git

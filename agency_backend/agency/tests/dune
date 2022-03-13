@@ -1,0 +1,6 @@
+(tests
+ (names http_endpoints)
+ (libraries kxclib agency_models alcotest)
+ (flags (:standard
+          -open Agency_models
+          -open Kxclib)))

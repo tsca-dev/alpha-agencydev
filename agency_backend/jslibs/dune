@@ -1,0 +1,62 @@
+(executable
+ (name aii_jslib)
+ (modules aii_jslib)
+ (libraries
+   promise_js jslib_common re
+   agency_models js_of_ocaml-lwt base64 hex kxclib ptime)
+ (preprocess
+  (pps js_of_ocaml-ppx js_of_ocaml-ppx_deriving_json))
+ (modes byte)
+ (flags (:standard -g
+          -open Kxclib
+          -open Js_of_ocaml)))
+
+(executable
+ (name bil_jslib)
+ (modules bil_jslib)
+ (libraries
+   promise_js jslib_common
+   agency_models js_of_ocaml-lwt base64 hex kxclib ptime)
+ (preprocess
+  (pps js_of_ocaml-ppx js_of_ocaml-ppx_deriving_json))
+ (modes byte)
+ (flags (:standard -g
+          -open Kxclib
+          -open Js_of_ocaml)))
+
+(library
+ (name jslib_common)
+ (modules jsutils jsaii)
+ (wrapped false)
+ (libraries promise_js kxclib uri yojson agency_models)
+ (preprocess
+  (pps js_of_ocaml-ppx js_of_ocaml-ppx_deriving_json))
+ (modes byte)
+ (flags (:standard -g
+          -open Kxclib
+          -open Js_of_ocaml)))
+
+(rule
+ (targets aii-jslib.js)
+ (mode (promote (until-clean)))
+ (action (run %{bin:js_of_ocaml}
+           --pretty
+           --source-map-inline
+           %{dep:aii_jslib.bc} -o %{targets})))
+
+(rule
+ (targets bil-jslib.js)
+ (mode (promote (until-clean)))
+ (action (run %{bin:js_of_ocaml}
+           --pretty
+           --source-map-inline
+           %{dep:bil_jslib.bc} -o %{targets})))
+
+(rule
+ (alias devserver)
+ (deps aii-jslib.js aii-tryout.html)
+ (action
+  (progn
+   (echo "AII dev server started at 127.0.0.1:8000; ")
+   (echo "Contrl-C to exit")
+   (run %{bin:python3} -m http.server --bind 127.0.0.1))))

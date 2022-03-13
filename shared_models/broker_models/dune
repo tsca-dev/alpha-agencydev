@@ -1,0 +1,6 @@
+(library
+ (name broker_models)
+ (libraries sexplib zarith kxclib)
+ (preprocess (pps ppx_sexp_conv ppx_deriving_yojson))
+ (flags (:standard
+          -open Kxclib)))

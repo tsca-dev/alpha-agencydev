@@ -1,0 +1,39 @@
+(library
+ (name agency_proto_dependent)
+ (libraries kxclib uri sexplib yojson str)
+ (preprocess (pps ppx_sexp_conv ppx_deriving_yojson))
+ (flags (:standard -open Kxclib)))
+
+(vendored_dirs vendors)
+
+; (executable
+;  (name agency_server)
+;  (promote (until-clean))
+;  (libraries
+;    agency_apis
+;    ; indexerlib indexer_impls
+;    ; rich_utils
+;    ; brokerlib
+;    ptime kxclib
+;    httpaf httpaf-lwt-unix uri-sexp
+;    digestif nocrypto
+;    ; tezos-crypto
+;    ; tezos-client-base-unix
+;    ; tezos-client-006-PsCARTHA
+;    ; tezos-client-006-PsCARTHA-commands
+;    ; tezos-006-PsCARTHA-test-helpers
+;  )
+;  (preprocess (pps ppx_inline_test ppx_sexp_conv ppx_deriving_yojson
+;                   ; kxclib.ppx
+;  ))
+;  (flags (:standard -open Kxclib)))
+
+; ; (rule
+; ;  (targets aii-jslib.js)
+; ;  (mode (promote (until-clean)))
+; ;  (action (copy %{dep:../jslibs/aii-jslib.js} %{targets})))
+
+; ; (rule
+; ;  (targets bil-jslib.js)
+; ;  (mode (promote (until-clean)))
+; ;  (action (copy %{dep:../jslibs/bil-jslib.js} %{targets})))

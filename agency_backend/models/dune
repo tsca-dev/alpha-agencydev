@@ -1,0 +1,5 @@
+(library
+ (name agency_models)
+ (libraries kxclib uri sexplib yojson str lwt)
+ (preprocess (pps ppx_sexp_conv ppx_deriving_yojson))
+ (flags (:standard -open Kxclib)))

@@ -1,0 +1,15 @@
+agency/*.js
+jslibs/*.js
+ssl.*/
+ssl.current
+*~
+*.exe
+*.cm*
+.merlin
+*.install
+src/tests/*.iml
+_build
+_opam
+\#*\#
+.\#*
+docker/Dockerfile
