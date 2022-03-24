@@ -10,6 +10,6 @@
 [submodule "agency_backend/vendors/httpaf"]
 	path = agency_backend/vendors/httpaf
 	url = https://github.com/kxcteam/httpaf.git
-[submodule "shared_vendors/vendors/kxclib"]
-	path = shared_vendors/vendors/kxclib
+[submodule "shared_vendors/kxclib"]
+	path = shared_vendors/kxclib
 	url = https://github.com/kxcteam/kxclib-ocaml.git
