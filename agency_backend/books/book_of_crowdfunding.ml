@@ -268,7 +268,8 @@ let crowdfunding_version001 : tmplversion =
           form_interpreter = (fun (module Sdk) fvs ->
             let raisers =
               List.assoc fn_raisers fvs
-              |> String.split_on_char ',' in
+              |> String.split_on_char ','
+              |?> (Fn.negate String.empty_trimmed) in
             let funding_start = List.assoc fn_funding_start fvs in
             let funding_end = List.assoc fn_funding_end fvs in
             let funding_ucr_start = List.assoc fn_ucr_start fvs in

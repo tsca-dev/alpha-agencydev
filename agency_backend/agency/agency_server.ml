@@ -1323,9 +1323,8 @@ let () =
     Proto0.DescribeSpellAssistant (fun req ->
       let open Proto0 in
       let open Book_intf.TmplversionTypes in
-      let (tmplversion, salabel) = req in
-      let tmplversion = List.find (fun x -> x.tmplversion = tmplversion)
-                          (Books.available_tmplversions |&> snd |> List.flatten) in
+      let (tmplhash, salabel) = req in
+      let tmplversion = find_tmplversion ?tmplversion:None tmplhash in
       let sa = List.find (fun e -> e.salabel = salabel)
                  tmplversion.spell_assistants in
       let desc = {

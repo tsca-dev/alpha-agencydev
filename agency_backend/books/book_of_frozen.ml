@@ -145,7 +145,8 @@ let frozen_version001 : tmplversion =
             let unfrozen = List.assoc fn_frozen_until fvs in
             let owners =
               List.assoc fn_fund_owners fvs
-              |> String.split_on_char ',' in
+              |> String.split_on_char ','
+              |?> (Fn.negate String.empty_trimmed) in
             match owners with
             | [] -> Error ("There must be at least one fund owner.", [
                           fn_fund_owners, "minimum one owner"

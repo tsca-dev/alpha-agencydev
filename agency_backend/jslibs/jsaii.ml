@@ -158,6 +158,15 @@ module AiiJsBridge = struct
           spirit_interpretation_request_of_yojson %~?>
           Client.invoke InterpretSpiritStatus
           %~> spirit_interpretation_result_to_yojson
+        val describeSpellAssistant = fun tmplhash salabel ->
+          Client.invoke DescribeSpellAssistant (
+              ocstr' tmplhash,
+              ocstr' salabel)
+          >|= rt spell_assistant_desc_to_yojson
+        val interpretSpellAsisstant =
+          spell_assistant_input_of_yojson %~?>
+          Client.invoke SpellAssistantInterpret
+          %~> spell_assistant_interpretation_to_yojson
       end
   end
   

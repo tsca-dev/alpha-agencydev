@@ -329,7 +329,7 @@ module AgencyInternalInterface = struct
         (spirit_interpretation_request,
          spirit_interpretation_result) aii_api
     | DescribeSpellAssistant :
-        (string (* tmplversion *) * string (* salabel *),
+        (string (* tmplhash *) * string (* salabel *),
          spell_assistant_desc) aii_api
     | SpellAssistantInterpret :
         (spell_assistant_input,
